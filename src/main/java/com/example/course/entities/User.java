@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -30,6 +32,7 @@ public class User implements Serializable {
 	private String phone;
 	private String password;
 	
+	@JsonIgnore //Serve para evitar o loop que gera em um relacionamento de banco de dados
 	@OneToMany(mappedBy = "client") //Aqui serve para acessar as orders
 	private List<Order> orders = new ArrayList<>(); //Quando se trabalha com uma coleção, só se usa os gets (não se usa set)
 	
